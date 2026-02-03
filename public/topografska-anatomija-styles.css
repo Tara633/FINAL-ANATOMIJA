@@ -1,0 +1,118 @@
+/* Osnovni stilovi */
+body {
+    font-family: 'Segoe UI', 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Naslov */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+h2 {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Uvodni paragrafi */
+.intro p {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.15em;
+    max-width: 1000px;
+}
+
+/* Slika */
+.intro img {
+    display: block;
+    max-width: 90%;
+    height: auto;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Sekcije s popisima */
+ul {
+    background-color: white;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+ul li {
+    font-size: 1.15em;
+    margin-bottom: 10px;
+}
+
+/* Napomena */
+.note {
+    text-align: center;
+    font-weight: bold;
+    color: #444;
+    font-size: 1.1em;
+    margin: 30px auto 15px;
+}
+
+/* Footer */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 1.1em;
+    margin-top: auto;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsivnost */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .intro p, ul {
+        padding: 15px;
+    }
+
+    .intro img {
+        width: 100%;
+    }
+}

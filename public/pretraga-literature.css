@@ -1,0 +1,35 @@
+#searchForm {
+    margin: 20px;
+    text-align: center;
+}
+
+#searchQuery {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+#results {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.book {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.book a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.book a:hover {
+    text-decoration: underline;
+}

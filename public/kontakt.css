@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #e0f7fa, #f2f2f2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#kontakt {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.kontakt-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+.kontakt-container h2 {
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.kontakt-container p {
+    font-size: 17px;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.kontakt-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.kontakt-container li {
+    font-size: 17px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.kontakt-container a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.kontakt-container a:hover {
+    color: #005fa3;
+    text-decoration: underline;
+}
+
+.kontakt-container i {
+    color: #0077cc;
+    font-size: 18px;
+}
+
+.kontakt-container input,
+.kontakt-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-size: 16px;
+}
+
+.kontakt-container button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.kontakt-container button:hover {
+    background-color: #005fa3;
+}
+
+/* Animacija */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
