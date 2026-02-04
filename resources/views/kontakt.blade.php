@@ -21,7 +21,7 @@
         <div class="login-container">
             <div class="login-form" id="loginForm">
                 <h3>Prijava</h3>
-                <input type="email" id="email" placeholder="Email adresa" required />
+                <input type="email" id="email" placeholder="Email adressa" required />
                 <input type="password" id="password" placeholder="Lozinka" required />
                 <button type="submit">Prijavi se</button>
                 <a href="#" class="forgot-password">Zaboravili ste lozinku?</a>
