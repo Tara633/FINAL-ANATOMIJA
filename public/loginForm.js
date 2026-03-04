@@ -1,23 +1,33 @@
-function toggleLoginForm() {
-    const form = document.getElementById("loginForm");
-    form.classList.toggle("show");
-    // Sakrij registracijsku formu ako je otvorena
-    const regForm = document.getElementById("registerForm");
-    if (regForm) {
-        regForm.style.display = "none";
-    }
-}
+// toggle login/registracija
+const loginToggle = document.getElementById('loginToggle');
+const registerToggle = document.getElementById('registerToggle');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
 
-function toggleRegisterForm() {
-    const regForm = document.getElementById("registerForm");
-    if (regForm.style.display === "block") {
-        regForm.style.display = "none";
-    } else {
-        regForm.style.display = "block";
+loginToggle.addEventListener('click', () => {
+    loginForm.classList.toggle('show');  // prikazuje login
+    registerForm.classList.remove('show'); // sakriva registraciju
+});
+
+registerToggle.addEventListener('click', () => {
+    registerForm.classList.toggle('show'); // prikazuje registraciju
+    loginForm.classList.remove('show');    // sakriva login
+});
+
+// kontakt forma - mailto
+function sendEmail(event) {
+    event.preventDefault();
+    const ime = document.getElementById('ime').value.trim();
+    const prezime = document.getElementById('prezime').value.trim();
+    const komentar = document.getElementById('komentar').value.trim();
+
+    if (!ime || !prezime) {
+        alert("Molimo unesite ime i prezime.");
+        return;
     }
-    // Sakrij login formu ako je otvorena
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.classList.remove("show");
-    }
+
+    const subject = `Kontakt forma - ${ime} ${prezime}`;
+    const body = `Ime: ${ime}%0APrezime: ${prezime}%0AKomentar: ${encodeURIComponent(komentar)}`;
+    const mailtoLink = `mailto:tara.bilen@ss-adamic.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
 }

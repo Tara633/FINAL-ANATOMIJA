@@ -5,39 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kontaktirajte nas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link rel="stylesheet" href="kontakt.css" />
-    <script src="loginForm.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/kontakt.css') }}" />
 </head>
 <body>
     <!-- Meni -->
     <nav>
-        <a href="kontakt.html">Kontakt</a>
-        <a href="javascript:void(0);" onclick="toggleLoginForm()">Login</a>
-        <a href="javascript:void(0);" onclick="toggleRegisterForm()">Registracija</a>
-        <a href="o-nama.html">O nama</a>
-        <a href="novosti.html">Novosti</a>
+        <a href="{{ url('kontakt') }}">Kontakt</a>
+        <a href="javascript:void(0);" id="loginToggle">Login</a>
+        <a href="javascript:void(0);" id="registerToggle">Registracija</a>
+        <a href="{{ url('o-nama') }}">O nama</a>
+        <a href="{{ url('novosti') }}">Novosti</a>
 
         <!-- Login forma -->
         <div class="login-container">
-            <div class="login-form" id="loginForm">
-                <h3>Prijava</h3>
-                <input type="email" id="email" placeholder="Email adresa" required />
-                <input type="password" id="password" placeholder="Lozinka" required />
-                <button type="submit">Prijavi se</button>
-                <a href="#" class="forgot-password">Zaboravili ste lozinku?</a>
-            </div>
+           <form class="login-form" id="loginForm" method="POST" action="{{ route('login') }}">
+    @csrf
+    <h3>Prijava</h3>
+    <input type="email" name="email" placeholder="Email adresa" required />
+    <input type="password" name="password" placeholder="Lozinka" required />
+    <button type="submit">Prijavi se</button>
+    <a href="{{ route('password.request') }}" class="forgot-password">Zaboravili ste lozinku?</a>
+            </form>
         </div>
 
         <!-- Registracijska forma -->
         <div class="register-container">
-            <div class="register-form" id="registerForm" style="display:none;">
-                <h3>Registracija</h3>
-                <input type="text" id="regIme" placeholder="Ime" required />
-                <input type="text" id="regPrezime" placeholder="Prezime" required />
-                <input type="email" id="regEmail" placeholder="Email adresa" required />
-                <input type="password" id="regPassword" placeholder="Lozinka" required />
-                <button type="submit">Registriraj se</button>
-            </div>
+            <form class="register-form" id="registerForm" method="POST" action="{{ route('register') }}">
+    @csrf
+    <h3>Registracija</h3>
+    <input type="text" name="name" placeholder="Ime" required />
+    <input type="text" name="surname" placeholder="Prezime" required />
+    <input type="email" name="email" placeholder="Email adresa" required />
+    <input type="password" name="password" placeholder="Lozinka" required />
+    <button type="submit">Registriraj se</button>
+</form>
         </div>
     </nav>
 
@@ -62,29 +63,12 @@
         </div>
     </section>
 
-    <script>
-        function sendEmail(event) {
-            event.preventDefault();
-            const ime = document.getElementById('ime').value.trim();
-            const prezime = document.getElementById('prezime').value.trim();
-            const komentar = document.getElementById('komentar').value.trim();
-
-            if (!ime || !prezime) {
-                alert("Molimo unesite ime i prezime.");
-                return;
-            }
-
-            const subject = `Kontakt forma - ${ime} ${prezime}`;
-            const body = `Ime: ${ime}%0APrezime: ${prezime}%0AKomentar: ${encodeURIComponent(komentar)}`;
-            const mailtoLink = `mailto:tara.bilen@ss-adamic.com?subject=${subject}&body=${body}`;
-
-            window.location.href = mailtoLink;
-        }
-    </script>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2025. Anatomija</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ asset('js/loginForm.js') }}"></script>
 </body>
 </html>
