@@ -3,100 +3,88 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ANATOMIJA</title>
-    <link rel="stylesheet" href="novi-anatomija-projekt-styles.css" />
-    <link rel="stylesheet" href="pretraga-literature.css" />
-    <script src="loginForm.js" defer></script>
-    <script src="{{ asset('js/pretraga-literature.js') }}" defer></script>
+    <title>Kontaktirajte nas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="kontakt.css" />
+    <script src="loginForm.js"></script>
 </head>
 <body>
-  <div class="wrapper"><!-- POČETAK WRAPPERA -->
-
     <!-- Meni -->
     <nav>
-      <a href="kontakt">Kontakt</a>
-      <a href="javascript:void(0);" onclick="toggleLoginForm()">Login</a>
-      <a href="javascript:void(0);" onclick="toggleRegisterForm()">Registracija</a>
-      <a href="o-nama">O nama</a>
-      <a href="novosti">Novosti</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="javascript:void(0);" onclick="toggleLoginForm()">Login</a>
+        <a href="javascript:void(0);" onclick="toggleRegisterForm()">Registracija</a>
+        <a href="o-nama.html">O nama</a>
+        <a href="novosti.html">Novosti</a>
 
-      <div class="login-container">
-        <div class="login-form" id="loginForm" style="display:none;">
-          <h3>Prijava</h3>
-          <input type="email" id="email" placeholder="Email adresa" required />
-          <input type="password" id="password" placeholder="Lozinka" required />
-          <button type="submit">Prijavi se</button>
-          <a href="#" class="forgot-password">Zaboravili ste lozinku?</a>
+        <!-- Login forma -->
+        <div class="login-container">
+            <div class="login-form" id="loginForm">
+                <h3>Prijava</h3>
+                <input type="email" id="email" placeholder="Email adresa" required />
+                <input type="password" id="password" placeholder="Lozinka" required />
+                <button type="submit">Prijavi se</button>
+                <a href="#" class="forgot-password">Zaboravili ste lozinku?</a>
+            </div>
         </div>
-        <div class="register-form" id="registerForm" style="display:none;">
-          <h3>Registracija</h3>
-          <input type="text" id="regIme" placeholder="Ime" required />
-          <input type="text" id="regPrezime" placeholder="Prezime" required />
-          <input type="email" id="regEmail" placeholder="Email adresa" required />
-          <input type="password" id="regPassword" placeholder="Lozinka" required />
-          <button type="submit">Registriraj se</button>
+
+        <!-- Registracijska forma -->
+        <div class="register-container">
+            <div class="register-form" id="registerForm" style="display:none;">
+                <h3>Registracija</h3>
+                <input type="text" id="regIme" placeholder="Ime" required />
+                <input type="text" id="regPrezime" placeholder="Prezime" required />
+                <input type="email" id="regEmail" placeholder="Email adresa" required />
+                <input type="password" id="regPassword" placeholder="Lozinka" required />
+                <button type="submit">Registriraj se</button>
+            </div>
         </div>
-      </div>
     </nav>
 
-    <!-- Pretraživač literature -->
- <div class="search-section">
-    <form id="searchForm" autocomplete="off">
-        <input 
-            type="text" 
-            id="searchQuery" 
-            placeholder="Pretraži literaturu iz anatomije..." 
-            required
-        />
-        <button type="submit">Pretraži</button>
-    </form>
+    <!-- Kontakt sekcija -->
+    <section id="kontakt">
+        <div class="kontakt-container">
+            <h2>📬 Kontaktirajte nas</h2>
+            <p>Ako imate bilo kakvih pitanja ili želite ostaviti pohvalu ili pritužbu, ispunite obrazac ispod.</p>
 
-    <div id="results"></div>
-</div>
+            <ul>
+                <li><i class="fas fa-envelope"></i> <strong>Email (Tara):</strong> <a href="mailto:tara.bilen@ss-adamic.com">tara.bilen@ss-adamic.com</a></li>
+                <li><i class="fas fa-envelope"></i> <strong>Email (Naia):</strong> <a href="mailto:naia.ribaric@ss-adamic.com">naia.ribaric@ss-adamic.com</a></li>
+                <li><i class="fas fa-phone"></i> <strong>Telefon:</strong> <a href="tel:+385912345678">+385 91 234 5678</a></li>
+            </ul>
 
-    <!-- Naslov i kvadrati -->
-    <div class="naslov">Anatomija</div>
+            <form onsubmit="sendEmail(event)">
+                <input type="text" id="ime" placeholder="Ime" required />
+                <input type="text" id="prezime" placeholder="Prezime" required />
+                <textarea id="komentar" rows="5" placeholder="Vaš komentar (pohvala ili pritužba)"></textarea>
+                <button type="submit">Pošalji</button>
+            </form>
+        </div>
+    </section>
 
-    <h2>OSNOVNA PODJELA</h2>
-    <div class="kvadrati">
-        <div class="kvadrat rendgenska" onclick="window.location.href='rendgenska-anatomija.html';"> 
-            <a href="rendgenska-anatomija">RENDGENSKA ANATOMIJA</a>
-        </div>
-        <div class="kvadrat sustavna" onclick="window.location.href='sustavna-anatomija.html';">
-            <a href="sustavna-anatomija">SUSTAVNA ANATOMIJA</a>
-        </div>
-        <div class="kvadrat topografska" onclick="window.location.href='topografska-anatomija.html';">
-            <a href="topografska-anatomija">TOPOGRAFSKA ANATOMIJA</a>
-        </div>
-    </div>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            const ime = document.getElementById('ime').value.trim();
+            const prezime = document.getElementById('prezime').value.trim();
+            const komentar = document.getElementById('komentar').value.trim();
 
-    <h2>MIŠIĆI</h2>
-    <div class="kvadrati">
-        <div class="kvadrat misici-glave" onclick="window.location.href='misici-glave.html';">
-            <a href="misici-glave">MIŠIĆI GLAVE</a>
-        </div>
-        <div class="kvadrat misici-vrata-i-trupa" onclick="window.location.href='misici-vrata-i-trupa.html';">
-            <a href="misici-vrata-i-trupa">MIŠIĆI VRATA I TRUPA</a>
-        </div>
-        <div class="kvadrat misici-leda" onclick="window.location.href='misici-leda.html';">
-            <a href="misici-leda">MIŠIĆI LEĐA</a>
-        </div>
-        <div class="kvadrat misici-nadlaktice-podlaktice" onclick="window.location.href='misici-nadlaktice-podlaktice.html';">
-            <a href="misici-nadlaktice-podlaktice">MIŠIĆI NADLAKTICE I PODLAKTICE</a>
-        </div>
-        <div class="kvadrat misici-dlana" onclick="window.location.href='misici-dlana.html';">
-            <a href="misici-dlana">MIŠIĆI DLANA</a>
-        </div>
-        <div class="kvadrat misici-stopala" onclick="window.location.href='misici-stopala.html';">
-            <a href="misici-stopala">MIŠIĆI STOPALA</a>
-        </div>
-    </div>
+            if (!ime || !prezime) {
+                alert("Molimo unesite ime i prezime.");
+                return;
+            }
+
+            const subject = `Kontakt forma - ${ime} ${prezime}`;
+            const body = `Ime: ${ime}%0APrezime: ${prezime}%0AKomentar: ${encodeURIComponent(komentar)}`;
+            const mailtoLink = `mailto:tara.bilen@ss-adamic.com?subject=${subject}&body=${body}`;
+
+            window.location.href = mailtoLink;
+        }
+    </script>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025. Anatomija</p>
     </footer>
-
-  </div><!-- KRAJ WRAPPERA -->
 </body>
 </html>
