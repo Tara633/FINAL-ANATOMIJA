@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relacija 1:N – jedan user može imati više postova
+     */
+    public function posts()
+    {
+        return $this->hasMany(\App\Models\Post::class);
+    }
 }

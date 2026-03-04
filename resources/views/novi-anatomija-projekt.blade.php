@@ -6,8 +6,8 @@
     <title>ANATOMIJA</title>
     <link rel="stylesheet" href="novi-anatomija-projekt-styles.css" />
     <link rel="stylesheet" href="pretraga-literature.css" />
-    <script src="loginForm.js"></script>
-    <script src="pretraga-literature.js"></script>
+    <script src="loginForm.js" defer></script>
+    <script src="{{ asset('js/pretraga-literature.js') }}" defer></script>
 </head>
 <body>
   <div class="wrapper"><!-- POČETAK WRAPPERA -->
@@ -40,11 +40,19 @@
     </nav>
 
     <!-- Pretraživač literature -->
-    <form id="searchForm">
-        <input type="text" id="searchQuery" placeholder="Pretraži literaturu..." required />
+ <div class="search-section">
+    <form id="searchForm" autocomplete="off">
+        <input 
+            type="text" 
+            id="searchQuery" 
+            placeholder="Pretraži literaturu iz anatomije..." 
+            required
+        />
         <button type="submit">Pretraži</button>
     </form>
+
     <div id="results"></div>
+</div>
 
     <!-- Naslov i kvadrati -->
     <div class="naslov">Anatomija</div>

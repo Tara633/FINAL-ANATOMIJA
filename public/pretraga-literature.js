@@ -1,62 +1,67 @@
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const query = document.getElementById('searchQuery').value.trim();
+console.log("Search JS radi");
+resultsDiv.style.display = "block";
+resultsDiv.innerHTML = '<div class="dropdown-item">TEST</div>';
+
+document.addEventListener("DOMContentLoaded", function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchQuery = document.getElementById('searchQuery');
     const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '';
 
-    if (!query) {
-        resultsDiv.innerHTML = 'Molimo unesite pojam za pretragu.';
-        return;
-    }
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const query = searchQuery.value.trim();
+        resultsDiv.innerHTML = '';
 
-    // Funkcija za pretragu na OpenLibrary API
-    function searchBooks(searchTerm) {
-        const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(searchTerm)}&limit=20`;
-        return fetch(url)
-            .then(response => response.json());
-    }
+        if (!query) {
+            resultsDiv.style.display = "block";
+            resultsDiv.innerHTML = '<div class="dropdown-item">Molimo unesite pojam za pretragu.</div>';
+            return;
+        }
 
-    // Prvo pokušaj s korisničkim upitom
-    searchBooks(query)
-        .then(data => {
-            if (data.docs && data.docs.length > 0) {
-                prikaziRezultate(data.docs);
-            } else {
-                // Ako nema rezultata, pokušaj s osnovnim ključnim riječima
-                const fallbackTerms = ['anatomija', 'atlas', 'mišići', 'kostur', 'koža'];
-                let found = false;
+        // Funkcija za pretragu OpenLibrary
+        function searchBooks(term) {
+            const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(term)}+anatomija&limit=10`;
+            return fetch(url).then(res => res.json());
+        }
 
-                // Iterativno pokušaj svaku fallback riječ dok ne nađeš nešto
-                (async function tryFallbacks() {
-                    for (const term of fallbackTerms) {
-                        const fallbackData = await searchBooks(term);
-                        if (fallbackData.docs && fallbackData.docs.length > 0) {
-                            prikaziRezultate(fallbackData.docs);
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found) {
-                        resultsDiv.innerHTML = 'Nema rezultata za vašu pretragu.';
-                    }
-                })();
-            }
-        })
-        .catch(error => {
-            console.error('Greška pri pretrazi:', error);
-            resultsDiv.innerHTML = 'Došlo je do pogreške pri pretrazi.';
-        });
+        searchBooks(query)
+            .then(data => {
+                if (data.docs && data.docs.length > 0) {
+                    prikaziRezultate(data.docs);
+                } else {
+                    resultsDiv.style.display = "block";
+                    resultsDiv.innerHTML = '<div class="dropdown-item">Nema rezultata.</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Greška:', error);
+                resultsDiv.style.display = "block";
+                resultsDiv.innerHTML = '<div class="dropdown-item">Došlo je do pogreške.</div>';
+            });
+    });
 
-    // Funkcija za prikaz rezultata
     function prikaziRezultate(docs) {
+        resultsDiv.innerHTML = '';
+        resultsDiv.style.display = "block";
+
         docs.forEach(book => {
-            const bookDiv = document.createElement('div');
-            bookDiv.classList.add('book');
+            const item = document.createElement('div');
+            item.classList.add('dropdown-item');
+
             const title = book.title ? `<strong>${book.title}</strong>` : 'Nema naslova';
-            const author = book.author_name ? `Autor: ${book.author_name.join(', ')}` : 'Autor nepoznat';
-            const link = book.key ? `<a href="https://openlibrary.org${book.key}" target="_blank">Više informacija</a>` : '';
-            bookDiv.innerHTML = `${title}<br>${author}<br>${link}`;
-            resultsDiv.appendChild(bookDiv);
+            const author = book.author_name ? book.author_name.join(', ') : 'Autor nepoznat';
+
+            item.innerHTML = `${title}<br><small>${author}</small>`;
+            item.onclick = () => window.open(`https://openlibrary.org${book.key}`, "_blank");
+
+            resultsDiv.appendChild(item);
         });
     }
+
+    // Sakrij dropdown kada se klikne izvan searcha
+    document.addEventListener('click', function(event) {
+        if (!document.querySelector('.search-section').contains(event.target)) {
+            resultsDiv.style.display = "none";
+        }
+    });
 });
